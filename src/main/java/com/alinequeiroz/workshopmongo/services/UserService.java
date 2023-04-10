@@ -5,6 +5,7 @@ import com.alinequeiroz.workshopmongo.dto.UserDTO;
 import com.alinequeiroz.workshopmongo.repository.UserRepository;
 import com.alinequeiroz.workshopmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,6 +31,10 @@ public class UserService {
     public User findById(String id) {
         Optional<User> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+    }
+    public void delete(String id){
+        findById(id);
+        repo.deleteById(id);
     }
 
 }
